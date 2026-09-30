@@ -1,0 +1,18 @@
+apiVersion: 1
+
+datasources:
+  - name: PostgreSQL-Joomla        # fuente de datos: BD relacional de Joomla
+    uid: postgresql-joomla         # uid fijo: el dashboard.json referencia este mismo valor
+    type: postgres
+    access: proxy
+    url: database:5432             # resolución DNS interna Docker (servicio "database")
+    database: joomladb             # debe coincidir con POSTGRES_DB del .env
+    user: joomla_user              # debe coincidir con POSTGRES_USER del .env
+    secureJsonData:
+      password: joomla_pass123     # debe coincidir con POSTGRES_PASSWORD del .env
+    jsonData:
+      sslmode: disable
+      postgresVersion: 1600
+      timescaledb: false
+    isDefault: true
+    editable: true

@@ -1,0 +1,39 @@
+{
+  "title": "Actividad Joomla / PostgreSQL",
+  "uid": "joomla-activity",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-6h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Sesiones activas de Joomla en el tiempo",
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 0 },
+      "datasource": { "type": "postgres", "uid": "postgresql-joomla" },
+      "targets": [
+        {
+          "rawSql": "SELECT to_timestamp(time) AS \"time\", COUNT(*) AS sesiones FROM \"joom_session\" GROUP BY 1 ORDER BY 1",
+          "format": "time_series",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "barchart",
+      "title": "Últimos accesos de usuarios (actividad)",
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 0 },
+      "datasource": { "type": "postgres", "uid": "postgresql-joomla" },
+      "targets": [
+        {
+          "rawSql": "SELECT username AS \"username\", \"lastvisitDate\" AS \"Último acceso\" FROM \"joom_users\" ORDER BY \"lastvisitDate\" DESC LIMIT 20",
+          "format": "table",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}
