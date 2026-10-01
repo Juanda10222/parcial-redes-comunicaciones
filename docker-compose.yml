@@ -113,6 +113,28 @@ services:
       - backend_net                                  # consulta directa de métricas a la BD
     restart: unless-stopped
 
+  # Seed: inserta el módulo con la infografía automáticamente (sin tocar Joomla a mano)
+  seed:
+    image: postgres:16-alpine          # ya trae el cliente psql, no hace falta otra imagen
+    container_name: seed
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      JOOMLA_DB_PREFIX: ${JOOMLA_DB_PREFIX}
+    volumes:
+      - ./seed:/seed:ro                # script + HTML de la infografía
+    entrypoint: ["sh", "/seed/seed.sh"]
+    depends_on:
+      database:
+        condition: service_healthy
+      joomla:
+        condition: service_started
+    networks:
+      - backend_net                    # solo necesita hablarle a database
+    restart: "no"                       # corre una vez por cada "up", no se queda vivo
+
 networks:
   frontend_net:                # nginx, joomla, jupyter, grafana
     driver: bridge

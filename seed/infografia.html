@@ -1,0 +1,134 @@
+<div style="background:#0B1220;color:#E6EDF3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.5;padding:48px 24px 64px;border-radius:6px;">
+<div style="max-width:1000px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="margin-bottom:48px;">
+    <div style="color:#F2A65A;font-size:13px;font-family:Consolas,'Liberation Mono',Menlo,monospace;">docker compose up -d</div>
+    <h1 style="font-size:34px;line-height:1.15;margin:10px 0 14px;font-weight:700;max-width:14ch;color:#E6EDF3;">Cinco contenedores, un solo comando</h1>
+    <p style="color:#8593A8;max-width:56ch;font-size:16px;margin:0;">Arquitectura desplegada para el parcial de Comunicaciones: proxy reverso, CMS, base de datos relacional, análisis de datos y monitoreo — orquestados y provisionados automáticamente.</p>
+  </div>
+
+  <!-- Diagram -->
+  <div style="background:#101A2E;border:1px solid #223049;border-radius:6px;padding:32px 20px;margin-bottom:48px;">
+    <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">
+      <rect x="380" y="10" width="140" height="42" rx="4" fill="none" stroke="#8593A8" stroke-width="1.2"/>
+      <text x="450" y="35" text-anchor="middle" fill="#E6EDF3" font-size="13">Navegador cliente</text>
+
+      <line x1="450" y1="52" x2="450" y2="90" stroke="#223049" stroke-width="1.5"/>
+      <text x="466" y="74" fill="#F2A65A" font-family="Consolas,monospace" font-size="11">:80</text>
+
+      <rect x="360" y="90" width="180" height="48" rx="4" fill="#0D1626" stroke="#4FD1C5" stroke-width="1.5"/>
+      <text x="450" y="114" text-anchor="middle" fill="#E6EDF3" font-weight="700" font-size="14">nginx</text>
+      <text x="450" y="130" text-anchor="middle" fill="#8593A8" font-family="Consolas,monospace" font-size="11">reverse proxy</text>
+
+      <line x1="450" y1="138" x2="180" y2="190" stroke="#223049" stroke-width="1.5"/>
+      <line x1="450" y1="138" x2="450" y2="190" stroke="#223049" stroke-width="1.5"/>
+      <line x1="450" y1="138" x2="720" y2="190" stroke="#223049" stroke-width="1.5"/>
+
+      <rect x="90" y="190" width="180" height="48" rx="4" fill="#0D1626" stroke="#223049" stroke-width="1.2"/>
+      <text x="180" y="214" text-anchor="middle" fill="#E6EDF3" font-weight="700" font-size="14">joomla</text>
+      <text x="180" y="230" text-anchor="middle" fill="#8593A8" font-family="Consolas,monospace" font-size="11">CMS · capa 7</text>
+
+      <rect x="360" y="190" width="180" height="48" rx="4" fill="#0D1626" stroke="#223049" stroke-width="1.2"/>
+      <text x="450" y="214" text-anchor="middle" fill="#E6EDF3" font-weight="700" font-size="14">jupyter</text>
+      <text x="450" y="230" text-anchor="middle" fill="#8593A8" font-family="Consolas,monospace" font-size="11">análisis Python</text>
+
+      <rect x="630" y="190" width="180" height="48" rx="4" fill="#0D1626" stroke="#223049" stroke-width="1.2"/>
+      <text x="720" y="214" text-anchor="middle" fill="#E6EDF3" font-weight="700" font-size="14">grafana</text>
+      <text x="720" y="230" text-anchor="middle" fill="#8593A8" font-family="Consolas,monospace" font-size="11">dashboards</text>
+
+      <line x1="180" y1="238" x2="450" y2="290" stroke="#223049" stroke-width="1.5"/>
+      <line x1="450" y1="238" x2="450" y2="290" stroke="#223049" stroke-width="1.5"/>
+      <line x1="720" y1="238" x2="450" y2="290" stroke="#223049" stroke-width="1.5"/>
+      <text x="466" y="266" fill="#F2A65A" font-family="Consolas,monospace" font-size="11">:5432</text>
+
+      <rect x="360" y="290" width="180" height="52" rx="4" fill="#0D1626" stroke="#4FD1C5" stroke-width="1.5"/>
+      <text x="450" y="313" text-anchor="middle" fill="#E6EDF3" font-weight="700" font-size="14">database</text>
+      <text x="450" y="329" text-anchor="middle" fill="#8593A8" font-family="Consolas,monospace" font-size="11">postgres:16 · backend_net</text>
+    </svg>
+  </div>
+
+  <!-- 5 servicios -->
+  <div style="display:flex;align-items:baseline;gap:10px;margin:0 0 20px;">
+    <h2 style="font-size:20px;margin:0;font-weight:700;color:#E6EDF3;">Los 5 servicios</h2>
+    <span style="color:#8593A8;font-family:Consolas,monospace;font-size:13px;">docker-compose.yml</span>
+  </div>
+  <table style="width:100%;border-collapse:separate;border-spacing:14px 0;margin-bottom:48px;"><tr>
+    <td style="vertical-align:top;width:20%;background:#101A2E;border:1px solid #223049;border-radius:6px;padding:18px;">
+      <div style="font-weight:700;font-size:15px;color:#E6EDF3;margin-bottom:4px;">nginx</div>
+      <div style="font-family:Consolas,monospace;font-size:11px;color:#4FD1C5;margin-bottom:10px;">nginx:alpine</div>
+      <p style="color:#8593A8;font-size:13px;margin:0 0 10px;">Único punto de entrada. Enruta hacia Joomla, Jupyter y Grafana.</p>
+      <span style="font-family:Consolas,monospace;font-size:11px;color:#F2A65A;border:1px solid #223049;border-radius:4px;padding:2px 7px;">80 → host</span>
+    </td>
+    <td style="vertical-align:top;width:20%;background:#101A2E;border:1px solid #223049;border-radius:6px;padding:18px;">
+      <div style="font-weight:700;font-size:15px;color:#E6EDF3;margin-bottom:4px;">joomla</div>
+      <div style="font-family:Consolas,monospace;font-size:11px;color:#4FD1C5;margin-bottom:10px;">joomla:latest</div>
+      <p style="color:#8593A8;font-size:13px;margin:0 0 10px;">Portal institucional, persiste todo en PostgreSQL.</p>
+      <span style="font-family:Consolas,monospace;font-size:11px;color:#F2A65A;border:1px solid #223049;border-radius:4px;padding:2px 7px;">frontend+backend</span>
+    </td>
+    <td style="vertical-align:top;width:20%;background:#101A2E;border:1px solid #223049;border-radius:6px;padding:18px;">
+      <div style="font-weight:700;font-size:15px;color:#E6EDF3;margin-bottom:4px;">database</div>
+      <div style="font-family:Consolas,monospace;font-size:11px;color:#4FD1C5;margin-bottom:10px;">postgres:16-alpine</div>
+      <p style="color:#8593A8;font-size:13px;margin:0 0 10px;">Motor relacional, aislado en backend_net.</p>
+      <span style="font-family:Consolas,monospace;font-size:11px;color:#F2A65A;border:1px solid #223049;border-radius:4px;padding:2px 7px;">5432 interno</span>
+    </td>
+    <td style="vertical-align:top;width:20%;background:#101A2E;border:1px solid #223049;border-radius:6px;padding:18px;">
+      <div style="font-weight:700;font-size:15px;color:#E6EDF3;margin-bottom:4px;">jupyter</div>
+      <div style="font-family:Consolas,monospace;font-size:11px;color:#4FD1C5;margin-bottom:10px;">jupyter/minimal-notebook</div>
+      <p style="color:#8593A8;font-size:13px;margin:0 0 10px;">Notebook precargado que consulta PostgreSQL.</p>
+      <span style="font-family:Consolas,monospace;font-size:11px;color:#F2A65A;border:1px solid #223049;border-radius:4px;padding:2px 7px;">/jupyter/</span>
+    </td>
+    <td style="vertical-align:top;width:20%;background:#101A2E;border:1px solid #223049;border-radius:6px;padding:18px;">
+      <div style="font-weight:700;font-size:15px;color:#E6EDF3;margin-bottom:4px;">grafana</div>
+      <div style="font-family:Consolas,monospace;font-size:11px;color:#4FD1C5;margin-bottom:10px;">grafana/grafana:latest</div>
+      <p style="color:#8593A8;font-size:13px;margin:0 0 10px;">Dashboard aprovisionado automáticamente.</p>
+      <span style="font-family:Consolas,monospace;font-size:11px;color:#F2A65A;border:1px solid #223049;border-radius:4px;padding:2px 7px;">/grafana/</span>
+    </td>
+  </tr></table>
+
+  <!-- Redes -->
+  <div style="display:flex;align-items:baseline;gap:10px;margin:0 0 20px;">
+    <h2 style="font-size:20px;margin:0;font-weight:700;color:#E6EDF3;">Segmentación de red</h2>
+    <span style="color:#8593A8;font-family:Consolas,monospace;font-size:13px;">2 redes bridge</span>
+  </div>
+  <table style="width:100%;border-collapse:separate;border-spacing:14px 0;margin-bottom:48px;"><tr>
+    <td style="vertical-align:top;width:50%;border:1px solid #223049;border-radius:6px;padding:18px;background:#0D1626;">
+      <span style="font-family:Consolas,monospace;font-size:11px;color:#4FD1C5;border:1px solid #4FD1C5;border-radius:4px;padding:2px 7px;display:inline-block;margin-bottom:8px;">frontend_net</span>
+      <p style="margin:0;color:#8593A8;font-size:13px;">nginx, joomla, jupyter, grafana — todo lo alcanzable a través del proxy.</p>
+    </td>
+    <td style="vertical-align:top;width:50%;border:1px solid #223049;border-radius:6px;padding:18px;background:#0D1626;">
+      <span style="font-family:Consolas,monospace;font-size:11px;color:#4FD1C5;border:1px solid #4FD1C5;border-radius:4px;padding:2px 7px;display:inline-block;margin-bottom:8px;">backend_net</span>
+      <p style="margin:0;color:#8593A8;font-size:13px;">joomla, database, jupyter, grafana — database sin salida al host.</p>
+    </td>
+  </tr></table>
+
+  <!-- OSI -->
+  <div style="display:flex;align-items:baseline;gap:10px;margin:0 0 20px;">
+    <h2 style="font-size:20px;margin:0;font-weight:700;color:#E6EDF3;">Modelo OSI aplicado</h2>
+    <span style="color:#8593A8;font-family:Consolas,monospace;font-size:13px;">capas 2–7</span>
+  </div>
+  <div style="border-top:1px solid #223049;">
+    <table style="width:100%;border-collapse:collapse;">
+      <tr style="border-bottom:1px solid #223049;">
+        <td style="padding:14px 12px 14px 0;width:56px;font-family:Consolas,monospace;color:#F2A65A;font-size:13px;vertical-align:top;">L7</td>
+        <td style="padding:14px 0;color:#8593A8;font-size:14px;"><b style="color:#E6EDF3;">Aplicación.</b> Cabeceras Host / X-Forwarded-For / X-Forwarded-Proto de nginx; upgrade HTTP→WebSocket para el kernel de Jupyter.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #223049;">
+        <td style="padding:14px 12px 14px 0;font-family:Consolas,monospace;color:#F2A65A;font-size:13px;vertical-align:top;">L4</td>
+        <td style="padding:14px 0;color:#8593A8;font-size:14px;"><b style="color:#E6EDF3;">Transporte.</b> TCP 80 (nginx), 5432 (postgres), 8888 (jupyter), 3000 (grafana); conexiones persistentes hacia la base de datos.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #223049;">
+        <td style="padding:14px 12px 14px 0;font-family:Consolas,monospace;color:#F2A65A;font-size:13px;vertical-align:top;">L3</td>
+        <td style="padding:14px 0;color:#8593A8;font-size:14px;"><b style="color:#E6EDF3;">Red.</b> DNS embebido de Docker (127.0.0.11) resuelve nombres de servicio; NAT del host para el puerto publicado.</td>
+      </tr>
+      <tr>
+        <td style="padding:14px 12px 0 0;font-family:Consolas,monospace;color:#F2A65A;font-size:13px;vertical-align:top;">L2</td>
+        <td style="padding:14px 0 0;color:#8593A8;font-size:14px;"><b style="color:#E6EDF3;">Enlace.</b> Interfaces veth conectadas a los bridges virtuales; resolución ARP entre contenedores del mismo bridge.</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="margin-top:48px;color:#8593A8;font-size:13px;text-align:center;">Ingeniería Mecatrónica · Comunicaciones — desplegado con <span style="color:#4FD1C5;">docker compose up -d</span></div>
+
+</div>
+</div>

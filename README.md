@@ -22,6 +22,9 @@ Joomla se instala automáticamente por variables de entorno (`JOOMLA_ADMIN_*` en
 2. En `http://localhost/jupyter/`, abrir `work/analisis_datos.ipynb` y ejecutar todas las celdas.
 3. En `http://localhost/grafana/`, el dashboard **"Actividad Joomla / PostgreSQL"** ya está cargado (datasource y paneles provisionados automáticamente; login anónimo habilitado, no requiere crear cuenta).
 
+## Diseño de la portada (infografía)
+El servicio `seed` inserta automáticamente un módulo "Custom HTML" con la infografía de la arquitectura (ver `seed/infografia.html`) en la posición `position-7`, visible en todas las páginas — sin pasos manuales en el admin de Joomla. Corre una vez cada `docker compose up -d`; si editas `seed/infografia.html`, el cambio se aplica solo con volver a levantar el stack (no hace falta reinstalar nada).
+
 ## Persistencia entre reinicios
 ```bash
 docker compose stop     # apaga sin borrar nada
