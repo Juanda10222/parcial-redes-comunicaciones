@@ -32,7 +32,7 @@ VALUES
   ('Infografia Docker',
    \$html\$${HTML_CONTENT}\$html\$,
    1,
-   'position-7',
+   'main-top',
    1,
    'mod_custom',
    1,
