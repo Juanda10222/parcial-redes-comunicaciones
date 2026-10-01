@@ -6,11 +6,11 @@ datasources:
     type: postgres
     access: proxy
     url: database:5432             # resolución DNS interna Docker (servicio "database")
-    database: joomladb             # debe coincidir con POSTGRES_DB del .env
     user: joomla_user              # debe coincidir con POSTGRES_USER del .env
     secureJsonData:
       password: joomla_pass123     # debe coincidir con POSTGRES_PASSWORD del .env
     jsonData:
+      database: joomladb           # <--- Movidio aquí dentro de jsonData
       sslmode: disable
       postgresVersion: 1600
       timescaledb: false
