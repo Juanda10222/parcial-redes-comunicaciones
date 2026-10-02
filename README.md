@@ -11,7 +11,7 @@ docker compose up -d
 ## Acceso a los servicios (vía Nginx, puerto 80)
 | Servicio | URL |
 |---|---|
-| Joomla (CMS) | http://localhost/ |
+| Joomla | http://localhost/ |
 | Jupyter Lab | http://localhost/jupyter/ |
 | Grafana | http://localhost/grafana/ (login: admin / admin123) |
 
