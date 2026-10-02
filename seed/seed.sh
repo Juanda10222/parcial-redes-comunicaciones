@@ -1,8 +1,5 @@
 #!/bin/sh
-# Inserta el módulo "Infografía Docker" directamente en la base de datos de Joomla.
-# Se salta por completo el editor/filtro de contenido de Joomla (de ahí que
-# los estilos inline sobrevivan sin tocar configuración manual alguna).
-# Corre una vez por cada "docker compose up -d"; es idempotente (borra e inserta de nuevo).
+
 
 set -e
 
