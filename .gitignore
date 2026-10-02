@@ -1,11 +1,11 @@
-# Nunca subir el .env real (contiene credenciales) — solo .env.example va al repo
+
 .env
 
-# Archivos de sistema
+
 .DS_Store
 Thumbs.db
 
-# Por si algún día se corre algo local fuera de Docker
+
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
