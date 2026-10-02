@@ -10,7 +10,7 @@ datasources:
     secureJsonData:
       password: joomla_pass123
     jsonData:
-      database: joomladb       # <--- DEBE ESTAR AQUÍ DENTRO DE JSONDATA
+      database: joomladb       
       sslmode: disable
       postgresVersion: 1600
       timescaledb: false
