@@ -62,6 +62,6 @@ Protocolo de resolucion de direcciones interno. Cuando Joomla necesita entregar 
 
 ## Sección 3: Guía de Verificación y Demostración
 
-1. **Joomla**: abrir `http://localhost/` (el sitio ya está instalado automáticamente) y navegar para generar tráfico y nuevas filas en `joom_session`.
+1. **Joomla**: abrir `http://localhost/` y navegar para generar tráfico y nuevas filas en `joom_session`.
 2. **Grafana**: abrir `http://localhost/grafana/` → dashboard **"Actividad Joomla / PostgreSQL"** ya cargado → confirmar que el panel de sesiones por hora y el de últimos accesos reflejan la navegación reciente.
-3. **Jupyter**: abrir `http://localhost/jupyter/`, abrir `work/analisis_datos.ipynb`, ejecutar todas las celdas (`Run All`) y verificar que la consulta `psycopg2`/`sqlalchemy` a PostgreSQL retorna datos y las gráficas se renderizan sin error.
+3. **Jupyter**: abrir `http://localhost/jupyter/`, abrir `work/analisis_datos.ipynb`, ejecutar todas las celdas (`Run All`)
