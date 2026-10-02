@@ -15,7 +15,7 @@ docker compose up -d
 | Jupyter Lab | http://localhost/jupyter/ |
 | Grafana | http://localhost/grafana/ (login: admin / admin123) |
 
-## Primer uso (sin instalación manual)
+## Primer uso 
 Joomla se instala automáticamente por variables de entorno (`JOOMLA_ADMIN_*` en `.env`).
 
 1. `http://localhost/` ya carga el sitio instalado. Backend: `http://localhost/administrator` con `admin` / `AdminJoomla2026!`.
