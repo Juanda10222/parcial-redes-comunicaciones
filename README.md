@@ -1,6 +1,6 @@
-# Parcial 2 - Comunicaciones (Ingeniería Mecatrónica)
+# Parcial 2 - Comunicaciones 
 
-## Arranque (zero-touch)
+## Arranque 
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd parcial-redes-comunicaciones
@@ -13,31 +13,21 @@ docker compose up -d
 |---|---|
 | Joomla (CMS) | http://localhost/ |
 | Jupyter Lab | http://localhost/jupyter/ |
-| Grafana | http://localhost/grafana/ (login: admin / admin123 o anónimo) |
+| Grafana | http://localhost/grafana/ (login: admin / admin123) |
 
 ## Primer uso (sin instalación manual)
-Joomla se instala automáticamente por variables de entorno (`JOOMLA_ADMIN_*` en `.env`) — **no aparece ningún wizard**.
+Joomla se instala automáticamente por variables de entorno (`JOOMLA_ADMIN_*` en `.env`).
 
-1. `http://localhost/` ya carga el sitio instalado. Backend: `http://localhost/administrator` con `admin` / `AdminJoomla2026!`. Prefijo de tablas fijo: `joom_` (valores por defecto de `.env.example`).
+1. `http://localhost/` ya carga el sitio instalado. Backend: `http://localhost/administrator` con `admin` / `AdminJoomla2026!`.
 2. En `http://localhost/jupyter/`, abrir `work/analisis_datos.ipynb` y ejecutar todas las celdas.
-3. En `http://localhost/grafana/`, el dashboard **"Actividad Joomla / PostgreSQL"** ya está cargado (datasource y paneles provisionados automáticamente; login anónimo habilitado, no requiere crear cuenta).
+3. En `http://localhost/grafana/`, el dashboard **"Actividad Joomla / PostgreSQL"** ya está cargado (datasource y paneles provisionados automáticamente, no requiere crear cuenta).
 
 ## Diseño de la portada (infografía)
-El servicio `seed` inserta automáticamente un módulo "Custom HTML" con la infografía de la arquitectura (ver `seed/infografia.html`) en la posición `main-top`, visible en todas las páginas — sin pasos manuales en el admin de Joomla. Corre una vez cada `docker compose up -d`; si editas `seed/infografia.html`, el cambio se aplica solo con volver a levantar el stack (no hace falta reinstalar nada).
+El servicio `seed` inserta automáticamente un módulo "Custom HTML" con la infografía de la arquitectura en la posición `main-top`, visible en todas las páginas.
 
-## Persistencia entre reinicios
-```bash
-docker compose stop     # apaga sin borrar nada
-docker compose start    # vuelve a prender, todo sigue instalado y logueado donde aplique
-
-docker compose down     # apaga y quita contenedores, PERO conserva los volúmenes (BD, Joomla, Grafana)
-docker compose up -d    # todo sigue intacto, no vuelve a instalar nada
-
-docker compose down -v  # ⚠️ SOLO usar esto si quieres borrar todo desde cero
-```
 
 ## Redes
 - `frontend_net`: nginx, joomla, jupyter, grafana.
-- `backend_net`: joomla, database, jupyter, grafana (database sin salida a frontend/host).
+- `backend_net`: joomla, database, jupyter, grafana.
 
-Ver `INFORME.md` para el análisis técnico completo (topología y modelo OSI).
+Ver `INFORME.md` para el análisis técnico completo.
